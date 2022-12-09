@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: template-web
-  namespace: qa-dev
+  namespace: qaq-dev
   labels:
     app: template-web
     version: v1
@@ -26,3 +26,10 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: template-web-conf
+              mountPath: /etc/nginx/conf.d/
+      volumes:
+      - name: template-web-conf
+        configMap:
+          name: template-web-conf

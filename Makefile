@@ -23,13 +23,16 @@ push-base: build-base
 build:
 	docker build -f Dockerfile -t $(DOCKER_IMAGE_NAME):$(VERSION) .
 
+build-amd64:
+	docker buildx build --platform=linux/amd64 -f Dockerfile -t $(DOCKER_IMAGE_NAME):$(VERSION) .
+
 test-container:
 	@docker rm -f template-web || true
 	@docker run -dp 10001:80 --name=template-web $(DOCKER_IMAGE_NAME):$(VERSION)
 	@docker ps | grep template-web
 	@curl -s http://127.0.0.1:10001/template/
 
-push-container:
+push:build-amd64
 	docker tag $(DOCKER_IMAGE_NAME):$(VERSION) $(DOCKER_IMAGE_NAME):latest
 	docker push $(DOCKER_IMAGE_NAME):$(VERSION)
 	docker push $(DOCKER_IMAGE_NAME):latest
