@@ -10,7 +10,7 @@ import useNavbar from '@/hooks/useNavbar'
 import useProjectId from '@/hooks/useProjectId'
 import usePermissions from '@/hooks/usePermissions'
 
-const services = useNavbar()
+const navbar = useNavbar()
 const {
   initProjectId,
   projectId,
@@ -42,7 +42,7 @@ nextTick(() => init())
 
     <div class="hd-mobile">
       <MobileHeader 
-        :services="services" 
+        :services="navbar" 
         :projectId="projectId" 
         :projects="projects" 
         :handleProjectSelected="handleProjectSelected" 
@@ -51,7 +51,7 @@ nextTick(() => init())
 
     <div class="hd-pc">
       <Header
-        :services="services" 
+        :navbar="navbar" 
         :projectId="projectId" 
         :projects="projects" 
         :handleProjectSelected="handleProjectSelected"

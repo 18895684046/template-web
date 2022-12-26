@@ -1,23 +1,47 @@
 import { ref } from 'vue'
 import { getNavbar } from "@/http/service/navbar"
 
-// 菜单项数据
+export interface Navbar {
+  data: Data;
+}
+
+interface Data {
+  home: Home;
+  menu: MenuItem[];
+}
+
+interface Home {
+  name: string;
+  url: string;
+  image: string;
+  disabled: boolean;
+}
+
 interface MenuItem {
   disabled: boolean;
   name: string;
-
-  // 子菜单
-  submenu?: any[];
+  submenu?: SubMenuItem[];
   url: string;
+}
+interface SubMenuItem {
+  name: string;
+  top: number;
+  subServices: SubServiceItem[]
+}
+
+interface SubServiceItem {
+  name: string;
+  url: string;
+  disabled: boolean;
 }
 
 const useNavbar = () => {
-  const services = ref<any>([])
+  const services = ref<Navbar>()
 
   // 获取所有服务信息
   getNavbar().then(
     res => {
-      services.value = res?.data
+      services.value = res
     }
   )
 

@@ -3,7 +3,7 @@ import { useStore, Actions } from '@/store'
 import { getProjects } from "@/http/service/uniauth"
 
 // 项目信息
-interface Project {
+export interface Project {
   label: string;
   value: string;
   [propName: string]: any;
