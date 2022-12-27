@@ -22,13 +22,18 @@ export default defineConfig({
     }
   },
   // 代理
-  // server: {
-  //   proxy: {
-  //     '/api': {
-  //       target: 'https:///',
-  //       changeOrigin: true,
-  //       rewrite: (path) => path.replace(/^\/api/, '')
-  //     }
-  //   }
-  // }
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://qaq.com',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, '')
+      },
+      '/static': {
+        target: 'https://qaq.com',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, '')
+      },
+    }
+  }
 })

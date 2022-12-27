@@ -36,16 +36,16 @@ interface SubServiceItem {
 }
 
 const useNavbar = () => {
-  const services = ref<Navbar>()
+  const navbar = ref<Navbar>()
 
   // 获取所有服务信息
   getNavbar().then(
     res => {
-      services.value = res
+      navbar.value = res
     }
   )
 
-  return services
+  return navbar
 }
 
 export default useNavbar

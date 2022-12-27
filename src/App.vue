@@ -42,7 +42,7 @@ nextTick(() => init())
 
     <div class="hd-mobile">
       <MobileHeader 
-        :services="navbar" 
+        :navbar="navbar" 
         :projectId="projectId" 
         :projects="projects" 
         :handleProjectSelected="handleProjectSelected" 
