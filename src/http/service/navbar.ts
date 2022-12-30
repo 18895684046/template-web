@@ -1,5 +1,7 @@
 import request from '../index'
 import config from '../config'
+// import { ApiResponse } from '../types'
+import { Navbar } from '@/stores/navbar'
 
 const {
   navbar
@@ -9,7 +11,7 @@ const isProd = import.meta.env.MODE === 'production'
 
 // 获取所有服务信息
 export const getNavbar = () => {
-  return request({
+  return request<Navbar>({
     url: navbar,
     method: 'get',
     params: isProd ? {

@@ -1,7 +1,24 @@
 import request from '../index'
 import config from '../config'
+import { ApiResponse } from '../types'
 
 const preUrl = '/api/uniauth'
+
+interface DefaultProject {
+  id: string;
+  projectId: string;
+  projectName: string;
+  description: string;
+  stage: string;
+  studio: string;
+  accessed: boolean;
+  iconUrl: string;
+  createTime: string;
+  createUser: string;
+  gameType: string;
+  location: string;
+  active: boolean;
+}
 
 const {
   uniauth: {
@@ -13,7 +30,7 @@ const {
 
 // 获取用户默认项目信息
 export const getDefaultProject = () => {
-  return request({
+  return request<ApiResponse<DefaultProject>>({
     url: preUrl + defaultProject,
     method: 'get',
   })
