@@ -90,9 +90,11 @@ nextTick(() => init())
 @media only screen and (max-width: 1099px) {
   .n-provider {
     height: 100%;
+    
   }
 
   .hd-pc {
+
     display: none;
   }
 }
