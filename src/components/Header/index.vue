@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 import { NIcon, NSelect } from 'naive-ui'
 import { PoweroffOutlined, RightOutlined, UserOutlined } from '@vicons/antd'
 import { logout } from '@/utils'
-import { Navbar } from '@/hooks/useNavbar' 
+import { Navbar } from '@/stores/navbar' 
 import { Project } from '@/hooks/useProjectId'
 
 const props = defineProps<{
@@ -30,7 +30,7 @@ const linkToAdmin = () => {
     <div class="hd-content">
       <!-- logo -->
       <a class="hd-logo-wrp" href="/">
-        <img class="hd-logo" :src="navbar.data.home.image" />
+        <img class="hd-logo" :src="navbar.home.image" />
       </a>
 
       <!-- 导航栏 -->
@@ -39,7 +39,7 @@ const linkToAdmin = () => {
           <span>测试服务</span>
           <div class="hd-subnav-wrp">
             <div class="hd-subnav-content">
-              <div v-for="subnav of navbar.data.menu?.find((i: any) => i.name === '测试服务')?.submenu" :key="subnav.name" class="subnav-itm">
+              <div v-for="subnav of navbar.menu?.find((i: any) => i.name === '测试服务')?.submenu" :key="subnav.name" class="subnav-itm">
                 <div class="subnav-name">{{ subnav.name }}</div>
                 <div class="subsrv-wrp">
                   <div v-for="srv of subnav?.subServices" :key="srv?.name"

@@ -6,7 +6,7 @@ import { ConfigProvider, Icon, Popup, Collapse, CollapseItem } from 'vant'
 import { NAvatar, NIcon, NSelect } from 'naive-ui'
 import { PoweroffOutlined, RightOutlined, UserOutlined } from '@vicons/antd'
 import { logout } from '@/utils'
-import { Navbar } from '@/hooks/useNavbar'
+import { Navbar } from '@/stores/navbar'
 import { Project } from '@/hooks/useProjectId'
 
 const RouteNameMap: any = {
@@ -75,7 +75,7 @@ const linkToAdmin = () => {
       <div class="hd-content">
         <!-- logo -->
         <a class="hd-logo-wrp" href="/">
-          <img class="hd-logo" :src="navbar.data.home.image" />
+          <img class="hd-logo" :src="navbar.home.image" />
         </a>
 
         <Icon style="flex: 1" class="icn-menu" name="bars" size="20" @click="showPopup" />
@@ -84,7 +84,7 @@ const linkToAdmin = () => {
           <div class="pop-wrp">
             <div class="pop-header">
               <a class="pop-hd-logo-wrp" href="/">
-                <img class="pop-hd-logo" :src="navbar.data.home.image" />
+                <img class="pop-hd-logo" :src="navbar.home.image" />
               </a>
 
               <NAvatar round :size="20" :src="avatar" />
@@ -100,7 +100,9 @@ const linkToAdmin = () => {
               >
                 <CollapseItem
                   style="padding: 0;"
-                  :border="false" v-for="(service, index) of navbar.data.menu?.find((i: any) => i.name === '测试服务')?.submenu"
+                  :border="false"
+                  v-for="(service, index) of navbar.menu?.find((i: any) => i.name === '测试服务')?.submenu"
+                  :key="service.name"
                   :title="service.name"
                   :name="index"
                   :class="['hd-mobile-second-tab', { 'hd-mobile-active-tab': curTabText === service.name }]"
@@ -108,6 +110,7 @@ const linkToAdmin = () => {
                 >
                   <CollapseItem
                     v-for="subSrv of service.subServices"
+                    :key="subSrv.name"
                     readonly
                     class="hd-mobile-third-tab"
                     :disabled="subSrv.disabled"
